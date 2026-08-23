@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>A Special Question For You 💖</title>
+  <title>A Special Question For Shivani 💖</title>
   <style>
     * {
       box-sizing: border-box;
@@ -22,7 +22,6 @@
       text-align: center;
       overflow-x: hidden;
 
-      /* Using the exact Pexels romantic dining photo */
       background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
                   url('https://images.pexels.com/photos/5086620/pexels-photo-5086620.jpeg?auto=compress&cs=tinysrgb&w=2000'); 
       background-size: cover;
@@ -35,6 +34,15 @@
       z-index: 10;
       padding: 20px;
       margin: auto;
+    }
+
+    .greeting {
+      color: #ff7eb3;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+      letter-spacing: 0.5px;
     }
 
     h1 {
@@ -53,7 +61,6 @@
       position: relative;
     }
 
-    /* Transparent Glass Buttons */
     .btn {
       padding: 14px 36px;
       font-size: 1.15rem;
@@ -87,7 +94,6 @@
       border-color: #dc3545;
     }
 
-    /* Transparent Pop-Up Messages */
     #noMessage {
       position: fixed;
       top: 30px;
@@ -110,7 +116,6 @@
       text-shadow: 0 2px 4px rgba(0,0,0,0.6);
     }
 
-    /* Transparent Form Styling */
     form {
       display: flex;
       flex-direction: column;
@@ -182,6 +187,7 @@
   <div id="noMessage"></div>
 
   <div class="container" id="mainCard">
+    <div class="greeting" id="userGreeting">Hi Shivani,</div>
     <h1 id="questionHeading">Will you go out on a date with me? 💖</h1>
     
     <div class="buttons" id="buttonGroup">
@@ -274,7 +280,6 @@
         isFirstHover = false;
       }
 
-      // Constrain within visible viewport frame
       const padding = 20;
       const btnWidth = noBtn.offsetWidth;
       const btnHeight = noBtn.offsetHeight;
@@ -310,6 +315,7 @@
     }
 
     function handleYes() {
+      document.getElementById('userGreeting').classList.add('hidden');
       document.getElementById('questionHeading').innerText = "Yay! Let's lock in the details 👇";
       document.getElementById('buttonGroup').classList.add('hidden');
       document.getElementById('noBtn').classList.add('hidden');
@@ -331,7 +337,7 @@
           📍 <strong>${selectedRestaurant}</strong><br/>
           🍷 Craving: <strong>${selectedFood}</strong>
         </p>
-        <p style="margin-top: 20px; color: #ff7eb3; font-weight: bold; font-size: 1.2rem; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Can't wait to see you! ❤️</p>
+        <p style="margin-top: 20px; color: #ff7eb3; font-weight: bold; font-size: 1.2rem; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Can't wait to see you, Shivani! ❤️</p>
       `;
     }
   </script>
