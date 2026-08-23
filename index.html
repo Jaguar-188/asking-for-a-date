@@ -20,28 +20,26 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      overflow: hidden;
+      overflow-x: hidden;
 
-      /* High quality romantic couple date image */
-      background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), 
+      background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), 
                   url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop'); 
       background-size: cover;
       background-position: center;
     }
 
-    /* Completely transparent layout wrapper (No background block) */
     .container {
-      max-width: 500px;
+      max-width: 520px;
       width: 90%;
       z-index: 10;
       padding: 20px;
+      margin: auto;
     }
 
-    /* Floating Question Text with Drop Shadow */
     h1 {
       color: #ffffff;
-      margin-bottom: 2rem;
-      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
       text-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
     }
 
@@ -54,7 +52,6 @@
       position: relative;
     }
 
-    /* Transparent Glass Buttons */
     .btn {
       padding: 14px 36px;
       font-size: 1.15rem;
@@ -88,13 +85,12 @@
       border-color: #dc3545;
     }
 
-    /* Transparent Pop-up Banner */
     #noMessage {
       position: fixed;
-      top: 40px;
+      top: 30px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       color: #ffffff;
@@ -111,45 +107,66 @@
       text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
 
-    /* Transparent Form Styling */
+    /* Form Layout Improvements */
     form {
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      margin-top: 1rem;
+      gap: 12px;
+      margin-top: 0.5rem;
       text-align: left;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      flex: 1;
     }
 
     label {
       font-weight: 600;
       color: #ffffff;
-      font-size: 1rem;
+      font-size: 0.9rem;
       text-shadow: 0 2px 4px rgba(0,0,0,0.6);
     }
 
-    input {
-      padding: 14px;
+    input, select {
+      padding: 12px;
       border: 1px solid rgba(255, 255, 255, 0.5);
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(0, 0, 0, 0.4);
       backdrop-filter: blur(6px);
       border-radius: 12px;
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: #ffffff;
       outline: none;
     }
 
+    select option {
+      background: #222;
+      color: #fff;
+    }
+
     input::placeholder {
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(255, 255, 255, 0.6);
     }
 
     .submit-btn {
       margin-top: 10px;
-      background: rgba(214, 51, 132, 0.3);
+      background: rgba(214, 51, 132, 0.4);
       border-color: rgba(255, 255, 255, 0.8);
+      width: 100%;
     }
 
     .submit-btn:hover {
-      background: rgba(214, 51, 132, 0.6);
+      background: rgba(214, 51, 132, 0.7);
     }
 
     .hidden {
@@ -171,11 +188,38 @@
 
     <div id="dateForm" class="hidden">
       <form onsubmit="handleFormSubmit(event)">
-        <label for="dateInput">Select Date & Day:</label>
-        <input type="date" id="dateInput" required />
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="dateInput">Date & Day:</label>
+            <input type="date" id="dateInput" required />
+          </div>
+          <div class="form-group">
+            <label for="timeInput">Timing:</label>
+            <input type="time" id="timeInput" required />
+          </div>
+        </div>
 
-        <label for="venueInput">Preferred Venue / Activity:</label>
-        <input type="text" id="venueInput" placeholder="e.g. Fine Dining & Drinks" required />
+        <div class="form-group">
+          <label for="foodInput">What would you love to eat? 🍝</label>
+          <input type="text" id="foodInput" placeholder="e.g. Italian, Sushi, Fine Drinks, Dessert..." required />
+        </div>
+
+        <div class="form-group">
+          <label for="citySelect">Select City:</label>
+          <select id="citySelect" onchange="updateRestaurants()" required>
+            <option value="">-- Choose City --</option>
+            <option value="bangalore">Bangalore</option>
+            <option value="angul">Angul, Odisha</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="restaurantSelect">Select Top Restaurant:</label>
+          <select id="restaurantSelect" required disabled>
+            <option value="">-- Select City First --</option>
+          </select>
+        </div>
 
         <button type="submit" class="btn submit-btn">Lock It In! ✨</button>
       </form>
@@ -190,6 +234,26 @@
       "Wrong button! Try the other one ✨",
       "Are you sure? Click Yes!"
     ];
+
+    const restaurantOptions = {
+      bangalore: [
+        "Toit (Indiranagar)",
+        "Toscano (UB City)",
+        "Olive Beach (Ashok Nagar)",
+        "The Biere Club (Lavelle Road)",
+        "Windmills Craftworks (Whitefield)",
+        "Karavalli (Gateway Hotel)",
+        "Custom Venue (Surprise Me!)"
+      ],
+      angul: [
+        "Hotel Legal (Banarpal)",
+        "Kamlesh Continental (Hemasurpada)",
+        "Shree Ganesh Restaurant",
+        "Hotel Durga",
+        "Royal Treat Restaurant",
+        "Custom Venue (Surprise Me!)"
+      ]
+    };
     
     let messageIndex = 0;
     let isFirstHover = true;
@@ -198,18 +262,15 @@
       const noBtn = document.getElementById('noBtn');
       const noMessage = document.getElementById('noMessage');
 
-      // Show floating top message
       noMessage.innerText = messages[messageIndex];
       noMessage.style.opacity = '1';
       messageIndex = (messageIndex + 1) % messages.length;
 
-      // Switch to fixed positioning on first interaction
       if (isFirstHover) {
         noBtn.style.position = 'fixed';
         isFirstHover = false;
       }
 
-      // Calculate bounded coordinates ensuring the button stays within viewport
       const padding = 20;
       const btnWidth = noBtn.offsetWidth;
       const btnHeight = noBtn.offsetHeight;
@@ -224,6 +285,26 @@
       noBtn.style.top = `${randomY}px`;
     }
 
+    function updateRestaurants() {
+      const citySelect = document.getElementById('citySelect');
+      const restaurantSelect = document.getElementById('restaurantSelect');
+      const selectedCity = citySelect.value;
+
+      restaurantSelect.innerHTML = '<option value="">-- Choose Restaurant --</option>';
+
+      if (selectedCity && restaurantOptions[selectedCity]) {
+        restaurantSelect.disabled = false;
+        restaurantOptions[selectedCity].forEach(place => {
+          const opt = document.createElement('option');
+          opt.value = place;
+          opt.innerText = place;
+          restaurantSelect.appendChild(opt);
+        });
+      } else {
+        restaurantSelect.disabled = true;
+      }
+    }
+
     function handleYes() {
       document.getElementById('questionHeading').innerText = "Yay! Let's lock in the details 👇";
       document.getElementById('buttonGroup').classList.add('hidden');
@@ -235,14 +316,18 @@
     function handleFormSubmit(event) {
       event.preventDefault();
       const selectedDate = document.getElementById('dateInput').value;
-      const venue = document.getElementById('venueInput').value;
+      const selectedTime = document.getElementById('timeInput').value;
+      const selectedFood = document.getElementById('foodInput').value;
+      const selectedRestaurant = document.getElementById('restaurantSelect').value;
       
       document.getElementById('mainCard').innerHTML = `
         <h1 style="font-size: 2.2rem;">It's a Date! 🎉</h1>
-        <p style="color: white; font-size: 1.2rem; margin-top: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.7);">
-          Mark your calendar for <strong>${selectedDate}</strong> at <strong>${venue}</strong>.
+        <p style="color: white; font-size: 1.1rem; margin-top: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.7); line-height: 1.6;">
+          Mark your calendar for <strong>${selectedDate}</strong> at <strong>${selectedTime}</strong>.<br/>
+          📍 <strong>${selectedRestaurant}</strong><br/>
+          🍷 Craving: <strong>${selectedFood}</strong>
         </p>
-        <p style="margin-top: 15px; color: #ff7eb3; font-weight: bold; font-size: 1.1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.7);">Can't wait! ❤️</p>
+        <p style="margin-top: 20px; color: #ff7eb3; font-weight: bold; font-size: 1.2rem; text-shadow: 0 2px 4px rgba(0,0,0,0.7);">Can't wait to see you! ❤️</p>
       `;
     }
   </script>
