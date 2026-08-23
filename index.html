@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>A Special Question For You 💖</title>
   <style>
-    /* 1. Basic Page Setup & Dreamy Background */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -20,131 +19,123 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      overflow: hidden; /* Prevents scrollbars when button jumps */
+      overflow: hidden;
       
-      /* Replace this placeholder with your desired high-quality image URL */
-      background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                        url('https://images.unsplash.com/photo-1519750783826-e2420f4d687f?q=80&w=2574&auto=format&fit=crop'); 
+      /* Reliable, high-res romantic dining background */
+      background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), 
+                  url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop'); 
       background-size: cover;
       background-position: center;
-      background-attachment: fixed;
     }
 
-    /* 2. Glassmorphism Card (for contrast against the background) */
     .card {
-      background: rgba(255, 255, 255, 0.2); /* Translucent */
-      backdrop-filter: blur(10px); /* Dreamy blur effect */
-      padding: 3rem;
-      border-radius: 20px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-      max-width: 500px;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 2.5rem 3rem;
+      border-radius: 24px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      max-width: 480px;
       width: 90%;
-      z-index: 10; /* Ensures card stays above floating messages */
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      z-index: 10;
+      border: 1px solid rgba(255, 255, 255, 0.4);
     }
 
     h1 {
-      color: white;
+      color: #ffffff;
       margin-bottom: 2rem;
-      font-size: 2.2rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      font-size: 2rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
     }
 
-    /* 3. Initial Question & Buttons */
+    /* Fixed flex container so buttons start side-by-side */
     .buttons {
       display: flex;
       justify-content: center;
-      gap: 30px;
-      margin-top: 1rem;
-      min-height: 60px; /* Space for the persistent No button */
+      align-items: center;
+      gap: 20px;
+      min-height: 60px;
+      position: relative;
     }
 
     .btn {
-      padding: 15px 35px;
-      font-size: 1.2rem;
-      font-weight: bold;
+      padding: 14px 32px;
+      font-size: 1.1rem;
+      font-weight: 700;
       border: none;
       border-radius: 50px;
       cursor: pointer;
-      transition: all 0.2s ease;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      transition: transform 0.2s ease, background 0.3s ease;
+      letter-spacing: 0.5px;
     }
 
     #yesBtn {
-      background-color: #28a745;
+      background: linear-gradient(135deg, #28a745, #20c997);
       color: white;
       box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
     }
+
     #yesBtn:hover {
-      transform: scale(1.05);
-      background-color: #218838;
+      transform: scale(1.08);
     }
 
     #noBtn {
-      background-color: #dc3545;
+      background: linear-gradient(135deg, #dc3545, #ff4d6d);
       color: white;
       box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
-      position: absolute; /* Crucial for teleporting */
-      z-index: 100; /* Stays above almost everything */
+      white-space: nowrap;
+      z-index: 999;
     }
 
-    /* 4. Persistence Messages */
+    /* Floating message box */
     #noMessage {
       position: fixed;
-      top: 20px;
+      top: 40px;
       left: 50%;
       transform: translateX(-50%);
-      background-color: rgba(255, 255, 255, 0.9);
-      color: #333;
-      padding: 10px 20px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      font-weight: 600;
-      z-index: 1000; /* Stays above everything */
-      transition: opacity 0.5s ease;
-      display: none; /* Initially hidden */
+      background-color: rgba(255, 255, 255, 0.95);
+      color: #2b2b2b;
+      padding: 12px 24px;
+      border-radius: 30px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      font-weight: 700;
+      font-size: 1.05rem;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
     }
 
-    /* 5. The "Yes" Form (Initially Hidden) */
+    /* Form styling */
     form {
       display: flex;
       flex-direction: column;
-      gap: 15px;
-      margin-top: 1.5rem;
+      gap: 14px;
+      margin-top: 1rem;
       text-align: left;
     }
 
     label {
       font-weight: 600;
-      color: white;
-      font-size: 1rem;
+      color: #ffffff;
+      font-size: 0.95rem;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
     }
 
     input {
       padding: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      background-color: rgba(255, 255, 255, 0.2);
-      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
       font-size: 1rem;
-      color: white;
-    }
-    input::placeholder {
-      color: rgba(255, 255, 255, 0.7);
-    }
-    input:focus {
-      outline: 2px solid #28a745;
-      background-color: rgba(255, 255, 255, 0.3);
+      color: #333;
+      outline: none;
     }
 
     .submit-btn {
-      background-color: #d63384;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
       color: white;
-      margin-top: 15px;
-      box-shadow: 0 4px 15px rgba(214, 51, 132, 0.4);
-    }
-    .submit-btn:hover {
-      background-color: #c8237e;
+      margin-top: 10px;
     }
 
     .hidden {
@@ -154,26 +145,23 @@
 </head>
 <body>
 
-  <!-- Persuasive message box -->
   <div id="noMessage"></div>
 
   <div class="card" id="mainCard">
     <h1 id="questionHeading">Will you go out on a date with me? 💖</h1>
     
     <div class="buttons" id="buttonGroup">
-      <!-- "No" button is placed absolute within the viewport -->
-      <button class="btn" id="noBtn">No</button>
       <button class="btn" id="yesBtn" onclick="handleYes()">Yes</button>
+      <button class="btn" id="noBtn" onmouseover="moveNoButton()" onclick="moveNoButton()">No</button>
     </div>
 
-    <!-- Hidden form that appears after "Yes" -->
     <div id="dateForm" class="hidden">
       <form onsubmit="handleFormSubmit(event)">
         <label for="dateInput">Select Date & Day:</label>
         <input type="date" id="dateInput" required />
 
         <label for="venueInput">Preferred Venue / Activity:</label>
-        <input type="text" id="venueInput" placeholder="e.g. Dreamy Dinner at [Restaurant Name]" required />
+        <input type="text" id="venueInput" placeholder="e.g. Italian Restaurant & Wine" required />
 
         <button type="submit" class="btn submit-btn">Lock It In! ✨</button>
       </form>
@@ -181,83 +169,63 @@
   </div>
 
   <script>
-    // List of persuasive messages when "No" is hovered
     const messages = [
       "Think again 😉",
       "You will never get a person like this!",
-      "He will love each day, every day.",
-      "Are you absolutely sure?",
-      "Mistake! The green button is better.",
-      "Just try clicking Yes!"
+      "He will love each day, every day. ❤️",
+      "Wrong button! Try the green one ✨",
+      "Are you sure? Try clicking Yes!"
     ];
     
     let messageIndex = 0;
-    const noBtn = document.getElementById('noBtn');
-    const noMessage = document.getElementById('noMessage');
+    let isFirstHover = true;
 
-    // Function to show a persuasive message
-    function showMessage() {
+    function moveNoButton() {
+      const noBtn = document.getElementById('noBtn');
+      const noMessage = document.getElementById('noMessage');
+
+      // Show persuasive message
       noMessage.innerText = messages[messageIndex];
-      noMessage.style.display = 'block';
       noMessage.style.opacity = '1';
-      
-      // Cycle through messages
       messageIndex = (messageIndex + 1) % messages.length;
 
-      // Hide message after 2 seconds
-      setTimeout(() => {
-        noMessage.style.opacity = '0';
-        // Delay complete removal to allow transition
-        setTimeout(() => noMessage.style.display = 'none', 500); 
-      }, 2000);
-    }
+      // Switch to fixed positioning on first hover so it breaks out of the card
+      if (isFirstHover) {
+        noBtn.style.position = 'fixed';
+        isFirstHover = false;
+      }
 
-    // Function to move the "No" button to a random position
-    function moveNoButton() {
-      // Screen boundaries setup (leaving margin)
-      const padding = 50; 
+      // Calculate random coordinates across screen
+      const padding = 40;
       const maxX = window.innerWidth - noBtn.offsetWidth - padding;
       const maxY = window.innerHeight - noBtn.offsetHeight - padding;
 
-      // Generate random coordinates within boundaries
       const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
       const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
 
-      // Apply new position
       noBtn.style.left = `${randomX}px`;
       noBtn.style.top = `${randomY}px`;
-      
-      // Also show the message
-      showMessage();
     }
 
-    // Attach the teleport function to the "mouseover" (hover) event
-    noBtn.addEventListener('mouseover', moveNoButton);
-    // Optional: Also move on touch for mobile (though hard to hit)
-    noBtn.addEventListener('touchstart', moveNoButton); 
-
-    // Function to execute when "Yes" is clicked
     function handleYes() {
-      // Update UI: Hide "No", update heading, show form
       document.getElementById('questionHeading').innerText = "Yay! Let's lock in the details 👇";
       document.getElementById('buttonGroup').classList.add('hidden');
-      document.getElementById('noBtn').classList.add('hidden'); // Also hide the teleporting button
+      document.getElementById('noBtn').classList.add('hidden');
+      document.getElementById('noMessage').classList.add('hidden');
       document.getElementById('dateForm').classList.remove('hidden');
     }
 
-    // Function to execute when the form is submitted
     function handleFormSubmit(event) {
-      event.preventDefault(); // Prevent page reload
+      event.preventDefault();
       const selectedDate = document.getElementById('dateInput').value;
       const venue = document.getElementById('venueInput').value;
       
-      // Replace the card content with a confirmation
       document.getElementById('mainCard').innerHTML = `
         <h1 style="font-size: 2rem;">It's a Date! 🎉</h1>
-        <p style="color: white; font-size: 1.1rem;">
+        <p style="color: white; font-size: 1.1rem; margin-top: 10px;">
           Mark your calendar for <strong>${selectedDate}</strong> at <strong>${venue}</strong>.
         </p>
-        <p style="margin-top: 15px; color: #ff9a9e; font-weight: bold;">I can't wait! ❤️</p>
+        <p style="margin-top: 15px; color: #ff7eb3; font-weight: bold;">Can't wait! ❤️</p>
       `;
     }
   </script>
