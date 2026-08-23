@@ -22,9 +22,9 @@
       text-align: center;
       overflow-x: hidden;
 
-      /* High-quality unwatermarked romantic dinner background */
-      background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), 
-                  url('https://images.unsplash.com/photo-1529543544282-ea669407fca3?q=80&w=2000&auto=format&fit=crop'); 
+      /* Using the exact Pexels romantic dining photo */
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                  url('https://images.pexels.com/photos/5086620/pexels-photo-5086620.jpeg?auto=compress&cs=tinysrgb&w=2000'); 
       background-size: cover;
       background-position: center;
     }
@@ -41,7 +41,7 @@
       color: #ffffff;
       margin-bottom: 1.5rem;
       font-size: 2rem;
-      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
     }
 
     .buttons {
@@ -53,6 +53,7 @@
       position: relative;
     }
 
+    /* Transparent Glass Buttons */
     .btn {
       padding: 14px 36px;
       font-size: 1.15rem;
@@ -64,14 +65,14 @@
       color: #ffffff;
       border-radius: 50px;
       cursor: pointer;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
       transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
       letter-spacing: 0.5px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
     }
 
     #yesBtn:hover {
-      background: rgba(40, 167, 69, 0.4);
+      background: rgba(40, 167, 69, 0.5);
       border-color: #28a745;
       transform: scale(1.05);
     }
@@ -82,32 +83,34 @@
     }
 
     #noBtn:hover {
-      background: rgba(220, 53, 69, 0.4);
+      background: rgba(220, 53, 69, 0.5);
       border-color: #dc3545;
     }
 
+    /* Transparent Pop-Up Messages */
     #noMessage {
       position: fixed;
       top: 30px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       color: #ffffff;
       border: 1px solid rgba(255, 255, 255, 0.3);
       padding: 12px 28px;
       border-radius: 30px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
       font-weight: 600;
       font-size: 1.1rem;
       z-index: 1000;
       opacity: 0;
       transition: opacity 0.3s ease;
       pointer-events: none;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
     }
 
+    /* Transparent Form Styling */
     form {
       display: flex;
       flex-direction: column;
@@ -135,13 +138,13 @@
       font-weight: 600;
       color: #ffffff;
       font-size: 0.9rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.7);
     }
 
     input, select {
       padding: 12px;
       border: 1px solid rgba(255, 255, 255, 0.5);
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.45);
       backdrop-filter: blur(6px);
       border-radius: 12px;
       font-size: 0.95rem;
@@ -271,6 +274,7 @@
         isFirstHover = false;
       }
 
+      // Constrain within visible viewport frame
       const padding = 20;
       const btnWidth = noBtn.offsetWidth;
       const btnHeight = noBtn.offsetHeight;
@@ -322,12 +326,12 @@
       
       document.getElementById('mainCard').innerHTML = `
         <h1 style="font-size: 2.2rem;">It's a Date! 🎉</h1>
-        <p style="color: white; font-size: 1.1rem; margin-top: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.7); line-height: 1.6;">
+        <p style="color: white; font-size: 1.1rem; margin-top: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); line-height: 1.6;">
           Mark your calendar for <strong>${selectedDate}</strong> at <strong>${selectedTime}</strong>.<br/>
           📍 <strong>${selectedRestaurant}</strong><br/>
           🍷 Craving: <strong>${selectedFood}</strong>
         </p>
-        <p style="margin-top: 20px; color: #ff7eb3; font-weight: bold; font-size: 1.2rem; text-shadow: 0 2px 4px rgba(0,0,0,0.7);">Can't wait to see you! ❤️</p>
+        <p style="margin-top: 20px; color: #ff7eb3; font-weight: bold; font-size: 1.2rem; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Can't wait to see you! ❤️</p>
       `;
     }
   </script>
