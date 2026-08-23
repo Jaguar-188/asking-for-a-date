@@ -10,6 +10,7 @@
       margin: 0;
       padding: 0;
     }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       height: 100vh;
@@ -20,97 +21,101 @@
       align-items: center;
       text-align: center;
       overflow: hidden;
-      
-      /* Reliable, high-res romantic dining background */
-      background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), 
+
+      /* High quality romantic couple date image */
+      background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), 
                   url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop'); 
       background-size: cover;
       background-position: center;
     }
 
-    .card {
-      background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding: 2.5rem 3rem;
-      border-radius: 24px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-      max-width: 480px;
+    /* Completely transparent layout wrapper (No background block) */
+    .container {
+      max-width: 500px;
       width: 90%;
       z-index: 10;
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 20px;
     }
 
+    /* Floating Question Text with Drop Shadow */
     h1 {
       color: #ffffff;
       margin-bottom: 2rem;
-      font-size: 2rem;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      font-size: 2.2rem;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
     }
 
-    /* Fixed flex container so buttons start side-by-side */
     .buttons {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 20px;
+      gap: 25px;
       min-height: 60px;
       position: relative;
     }
 
+    /* Transparent Glass Buttons */
     .btn {
-      padding: 14px 32px;
-      font-size: 1.1rem;
+      padding: 14px 36px;
+      font-size: 1.15rem;
       font-weight: 700;
-      border: none;
+      border: 1.5px solid rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #ffffff;
       border-radius: 50px;
       cursor: pointer;
-      transition: transform 0.2s ease, background 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
       letter-spacing: 0.5px;
-    }
-
-    #yesBtn {
-      background: linear-gradient(135deg, #28a745, #20c997);
-      color: white;
-      box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
 
     #yesBtn:hover {
-      transform: scale(1.08);
+      background: rgba(40, 167, 69, 0.4);
+      border-color: #28a745;
+      transform: scale(1.05);
     }
 
     #noBtn {
-      background: linear-gradient(135deg, #dc3545, #ff4d6d);
-      color: white;
-      box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
       white-space: nowrap;
       z-index: 999;
     }
 
-    /* Floating message box */
+    #noBtn:hover {
+      background: rgba(220, 53, 69, 0.4);
+      border-color: #dc3545;
+    }
+
+    /* Transparent Pop-up Banner */
     #noMessage {
       position: fixed;
       top: 40px;
       left: 50%;
       transform: translateX(-50%);
-      background-color: rgba(255, 255, 255, 0.95);
-      color: #2b2b2b;
-      padding: 12px 24px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 12px 28px;
       border-radius: 30px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      font-weight: 700;
-      font-size: 1.05rem;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      font-weight: 600;
+      font-size: 1.1rem;
       z-index: 1000;
       opacity: 0;
       transition: opacity 0.3s ease;
       pointer-events: none;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
 
-    /* Form styling */
+    /* Transparent Form Styling */
     form {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 16px;
       margin-top: 1rem;
       text-align: left;
     }
@@ -118,24 +123,33 @@
     label {
       font-weight: 600;
       color: #ffffff;
-      font-size: 0.95rem;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+      font-size: 1rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
     }
 
     input {
-      padding: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      background-color: rgba(255, 255, 255, 0.85);
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(6px);
       border-radius: 12px;
       font-size: 1rem;
-      color: #333;
+      color: #ffffff;
       outline: none;
     }
 
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
     .submit-btn {
-      background: linear-gradient(135deg, #ff758c, #ff7eb3);
-      color: white;
       margin-top: 10px;
+      background: rgba(214, 51, 132, 0.3);
+      border-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .submit-btn:hover {
+      background: rgba(214, 51, 132, 0.6);
     }
 
     .hidden {
@@ -147,7 +161,7 @@
 
   <div id="noMessage"></div>
 
-  <div class="card" id="mainCard">
+  <div class="container" id="mainCard">
     <h1 id="questionHeading">Will you go out on a date with me? 💖</h1>
     
     <div class="buttons" id="buttonGroup">
@@ -161,7 +175,7 @@
         <input type="date" id="dateInput" required />
 
         <label for="venueInput">Preferred Venue / Activity:</label>
-        <input type="text" id="venueInput" placeholder="e.g. Italian Restaurant & Wine" required />
+        <input type="text" id="venueInput" placeholder="e.g. Fine Dining & Drinks" required />
 
         <button type="submit" class="btn submit-btn">Lock It In! ✨</button>
       </form>
@@ -173,8 +187,8 @@
       "Think again 😉",
       "You will never get a person like this!",
       "He will love each day, every day. ❤️",
-      "Wrong button! Try the green one ✨",
-      "Are you sure? Try clicking Yes!"
+      "Wrong button! Try the other one ✨",
+      "Are you sure? Click Yes!"
     ];
     
     let messageIndex = 0;
@@ -184,21 +198,24 @@
       const noBtn = document.getElementById('noBtn');
       const noMessage = document.getElementById('noMessage');
 
-      // Show persuasive message
+      // Show floating top message
       noMessage.innerText = messages[messageIndex];
       noMessage.style.opacity = '1';
       messageIndex = (messageIndex + 1) % messages.length;
 
-      // Switch to fixed positioning on first hover so it breaks out of the card
+      // Switch to fixed positioning on first interaction
       if (isFirstHover) {
         noBtn.style.position = 'fixed';
         isFirstHover = false;
       }
 
-      // Calculate random coordinates across screen
-      const padding = 40;
-      const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-      const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+      // Calculate bounded coordinates ensuring the button stays within viewport
+      const padding = 20;
+      const btnWidth = noBtn.offsetWidth;
+      const btnHeight = noBtn.offsetHeight;
+
+      const maxX = window.innerWidth - btnWidth - padding;
+      const maxY = window.innerHeight - btnHeight - padding;
 
       const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
       const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
@@ -221,11 +238,11 @@
       const venue = document.getElementById('venueInput').value;
       
       document.getElementById('mainCard').innerHTML = `
-        <h1 style="font-size: 2rem;">It's a Date! 🎉</h1>
-        <p style="color: white; font-size: 1.1rem; margin-top: 10px;">
+        <h1 style="font-size: 2.2rem;">It's a Date! 🎉</h1>
+        <p style="color: white; font-size: 1.2rem; margin-top: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.7);">
           Mark your calendar for <strong>${selectedDate}</strong> at <strong>${venue}</strong>.
         </p>
-        <p style="margin-top: 15px; color: #ff7eb3; font-weight: bold;">Can't wait! ❤️</p>
+        <p style="margin-top: 15px; color: #ff7eb3; font-weight: bold; font-size: 1.1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.7);">Can't wait! ❤️</p>
       `;
     }
   </script>
